@@ -10,6 +10,7 @@ module.exports = router => {
 
     BillingCycle.methods(['get', 'post', 'put', 'delete'])
     BillingCycle.updateOptions(options)
+    // BillingCycle.after('post', ErrorHandler.makeMiddleware()).after('put', ErrorHandler.makeMiddleware())
     BillingCycle.route('count', count)
     BillingCycle.route('summary',  summary)
     BillingCycle.register(router, '/billing-cycles')

@@ -1,5 +1,5 @@
 
-module.exports = router => {
+module.exports = config => {
     const BillingCycle = require('./billing-cycle')
     const ErrorHandler = require('../utils/error.handler')
     const options = {
@@ -7,13 +7,14 @@ module.exports = router => {
         runValidators: true
     }
 
+    const authRouter = config.authRouter
 
     BillingCycle.methods(['get', 'post', 'put', 'delete'])
     BillingCycle.updateOptions(options)
     // BillingCycle.after('post', ErrorHandler.makeMiddleware()).after('put', ErrorHandler.makeMiddleware())
     BillingCycle.route('count', count)
     BillingCycle.route('summary',  summary)
-    BillingCycle.register(router, '/billing-cycles')
+    BillingCycle.register(authRouter, '/billing-cycles')
 
     function summary(req, res, next) {
         BillingCycle.aggregate({

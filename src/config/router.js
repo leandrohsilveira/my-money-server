@@ -4,7 +4,7 @@ module.exports = function(server) {
     const router = express.Router()
 
     // Base route
-    server.use('/api', router)
+    server.use('/oapi', router)
 
     return router
 }

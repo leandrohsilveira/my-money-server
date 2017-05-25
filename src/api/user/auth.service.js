@@ -31,7 +31,7 @@ function login(req, res, next) {
             const { username, email } = user
             res.json({username, email, token})
         } else {
-            res.status(403).send()
+            res.status(403).send({message: 'Sign in failed', errors: {credentials: {message:'Incorrect username or password'}}})
         }
     })
 }
@@ -98,7 +98,7 @@ function signup(req, res, next) {
             })
         }
         if(!valid) {
-            return res.status(400).json({errors})
+            return res.status(400).json({message: 'User registration failed', errors})
         }
     })
 }

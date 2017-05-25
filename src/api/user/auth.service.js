@@ -37,7 +37,7 @@ function login(req, res, next) {
 }
 
 function validateToken(req, res, next) {
-    const token = req.body.token || ''
+    const token = req.headers['authorization'] || req.body.token || ''
 
     jwt.verify(token, env.authSecret, (error, decoded) => res.json({valid: !error}))
 }
